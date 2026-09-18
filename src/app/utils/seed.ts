@@ -12,7 +12,8 @@ export const seedSuperAdmin = async() =>{
     })
 
     if(isSuperAdminExist){
-        console.log("Super Admin Already Exists!")
+        console.log("Super Admin Already Exists!");
+        return;
     }
     const name=config.super_admin_name
     const email=config.super_admin_email

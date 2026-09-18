@@ -2,7 +2,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import { Role } from "../../../generated/prisma/enums";
 import { auth } from "../../middleware/checkAuth";
 import { AuthController } from "./auth.controller";
-import { LoginZodSchema, PatienRegistrationZodSchema } from "./authValidation";
+import { ForgotPasswordZodSchema, LoginZodSchema, PatienRegistrationZodSchema, ResetPasswordZodSchema } from "./authValidation";
 import { catchAsync } from "../../utils/catchAsync";
 import z from "zod";
 import { validedRequest } from "../../middleware/validedRequest";
@@ -43,4 +43,11 @@ router.get(
 );
 router.post("/refresh-token", AuthController.refreshToken);
 router.post("google",AuthController.googleLogin)
+router.post("/forgot-password",
+	validedRequest(ForgotPasswordZodSchema),
+	AuthController.forgotPassword);
+router.post("/reset-password",
+	validedRequest(ResetPasswordZodSchema),
+	AuthController.resetPassword)
+
 export const AuthRoutes = router;

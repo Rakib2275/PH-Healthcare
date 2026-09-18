@@ -7,6 +7,8 @@ import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { AuthRoutes } from "./app/module/auth/auth.route";
 import z, { success } from "zod";
+import { redisClient } from "./app/lib/redis";
+import crypto from "crypto"
 
 const app: Application = express();
 
@@ -51,6 +53,30 @@ app.post("/zod",async (req: Request, res: Response,next: NextFunction) => {
 
 	}
 })
+
+app.get("/test",async (req: Request, res: Response,next: NextFunction) => {
+	try {
+		const otp = crypto.randomInt(100000,1000000)
+
+		// await redisClient.set("forgot-password-otp:patient1@gmail.com","12345",{
+		// 	expiration : {
+		// 		type : "EX",
+		// 		value : 60*5
+		// 	}
+		// })
+
+		res.status(httpStatus.OK).json({
+			success : true,
+			message : "Welcome to PH Healthcare System Backend",
+			data : otp
+		})
+	} catch (error) {
+		console.log(error)
+		next(error);
+
+	}
+})
+
 
 // Basic route
 app.get("/", async (req: Request, res: Response) => {
