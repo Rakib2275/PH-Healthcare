@@ -22,6 +22,11 @@ export const PatienRegistrationZodSchema = z.object({
 	}).optional()
 })
 
+export const PatientEmailVerifyZodSchema = z.object({
+	email : z.email("Not email!!"),
+	otp : z.string().length(6)
+})
+
 export const LoginZodSchema = z.object({
 	email : z.email(),
 	password : z.string().min(8, { message: "Password must be at least 8 characters long" })
@@ -46,7 +51,7 @@ export const ForgotPasswordZodSchema = z.object({
 
 export const ResetPasswordZodSchema = z.object({
 	email : z.email(),
-	password : z.string().min(8, { message: "Password must be at least 8 characters long" })
+	newPassword : z.string().min(8, { message: "Password must be at least 8 characters long" })
   				.max(20, { message: "Password cannot exceed 20 characters" })
   				.regex(/[A-Z]/, {
     			message: "Password must contain at least one uppercase letter",

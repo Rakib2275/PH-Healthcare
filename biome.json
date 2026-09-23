@@ -21,7 +21,11 @@
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
-		}
+		},
+		"includes": [
+			"**",
+			"!src/app/templates"
+		]
 	},
 	"assist": {
 		"enabled": true,
