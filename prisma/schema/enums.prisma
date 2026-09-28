@@ -18,7 +18,23 @@ enum Gender {
 }
 
 
-enum AuthProvider{
+enum AuthProvider {
   GOOGLE
   CREDENTIALS
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  ONGOING
+  COMPLETED
+}
+
+enum PamentStatus {
+  UNPAID
+  PAID
+  FAILED
+  CANCELLED
+  REFUNDED
 }
